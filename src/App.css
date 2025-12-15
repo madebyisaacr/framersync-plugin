@@ -1,0 +1,5 @@
+@import url("@shared/shared.css");
+
+html {
+	--color-accent: #0066FF;
+}
