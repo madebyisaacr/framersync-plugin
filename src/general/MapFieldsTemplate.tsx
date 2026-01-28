@@ -352,7 +352,7 @@ function MapFieldsPage({
 									<div
 										ref={(el) => (fieldElementRefs.current["slug"] = el)}
 										onClick={() => toggleEditMenuFieldConfig("slug")}
-										className="w-full relative pl-6 pr-2 rounded bg-secondary h-6 flex-row items-center cursor-pointer hover:bg-tertiary transition-colors"
+										className="w-full relative pl-6 pr-2 rounded bg-tertiary h-6 flex-row items-center cursor-pointer hover:bg-secondary transition-colors"
 									>
 										{!slugFieldConfig && editMenuFieldConfig !== "slug" && (
 											<div className="absolute inset-0 rounded-[inherit] border border-error" />
@@ -431,7 +431,7 @@ function MapFieldsPage({
 													key={field.property.id}
 													className={classNames(
 														"items-center flex-row gap-2 rounded px-2 h-6 cursor-pointer",
-														slugFieldId === field.property.id && "bg-secondary",
+														slugFieldId === field.property.id && "bg-tertiary",
 													)}
 												>
 													<input
@@ -475,7 +475,7 @@ function MapFieldsPage({
 											</div>
 										)}
 									</div>
-									<div className="flex-col gap-1 p-3 bg-secondary rounded text-secondary">
+									<div className="flex-col gap-1 p-3 bg-tertiary rounded text-secondary">
 										<p className="text-primary font-semibold">What is a slug field?</p>
 										<p>
 											The slug field is a unique ID for each item in the collection. If the CMS
@@ -547,7 +547,7 @@ function UnsupportedFieldBlock({ title, text }) {
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => setHover(false)}
 		>
-			<div className="size-full flex items-center bg-secondary rounded opacity-50 px-2">
+			<div className="size-full flex items-center bg-tertiary rounded opacity-50 px-2">
 				Unsupported Field Type
 			</div>
 			{text && (
@@ -591,7 +591,7 @@ function FieldTypeSelector({
 		const currentItemIndex = availableFieldTypes.indexOf(fieldType);
 
 		return (
-			<div onClick={onClick} className="relative flex-col p-0.5 gap-0.5 bg-secondary rounded">
+			<div onClick={onClick} className="relative flex-col p-0.5 gap-0.5 bg-tertiary rounded">
 				{currentItemIndex >= 0 && (
 					<div className="absolute inset-0.5">
 						<motion.div
@@ -674,7 +674,7 @@ const StaticInput = forwardRef(
 				ref={ref}
 				onClick={onClick}
 				className={classNames(
-					"relative w-full h-6 flex items-center justify-between bg-secondary rounded gap-1.5 px-2 min-w-0 text-ellipsis text-nowrap overflow-hidden",
+					"relative w-full h-6 flex items-center justify-between bg-tertiary rounded gap-1.5 px-2 min-w-0 text-ellipsis text-nowrap overflow-hidden",
 					disabled && "opacity-50",
 					className,
 				)}
@@ -780,9 +780,9 @@ function EditFieldMenu({
 			</div>
 			<div className="flex-col gap-2 overflow-y-auto w-full px-3 pb-3 flex-1">
 				<div className="min-h-10 flex-row items-center text-primary font-semibold -mb-2">
-					Field Settings
+					Options
 				</div>
-				<PropertyControl title="Import Field">
+				<PropertyControl title="Enabled">
 					<SegmentedControl
 						id={`import-${id}`}
 						items={[true, false]}
@@ -821,7 +821,7 @@ function EditFieldMenu({
 					{fieldConversionMessage && (
 						<div
 							className={classNames(
-								"p-3 bg-secondary rounded text-secondary flex-col gap-1.5 transition-opacity",
+								"p-3 bg-tertiary rounded text-secondary flex-col gap-1.5 transition-opacity",
 								disabled && "opacity-50",
 							)}
 						>
@@ -870,7 +870,7 @@ function EditFieldMenu({
 							</PropertyControl>
 							<div
 								className={classNames(
-									"p-3 bg-secondary rounded text-secondary flex-col gap-1.5 transition-opacity",
+									"p-3 bg-tertiary rounded text-secondary flex-col gap-1.5 transition-opacity",
 									disabled && "opacity-50",
 								)}
 							>
@@ -984,33 +984,40 @@ function PropertyControl({ title, children }) {
 
 function EditButton({ onClick, text = "Edit" }) {
 	return (
-		<Button type="button" onClick={onClick}>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				strokeWidth="2"
-				strokeLinecap="round"
-				strokeLinejoin="round"
-				className="-mr-0.5"
-			>
-				{text == "Edit" ? (
-					<>
-						<path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-						<path d="M13.5 6.5l4 4" />
-					</>
-				) : text == "Error" ? (
-					<>
-						<path d="M12 9v4" />
-						<path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
-						<path d="M12 16h.01" />
-					</>
-				) : null}
-			</svg>
-			{text}
+		<Button type="button" square onClick={onClick}>
+			{text == "Edit" ? (
+				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+					<path
+						d="M 9 7.5 C 9.828 7.5 10.5 8.172 10.5 9 C 10.5 9.828 9.828 10.5 9 10.5 C 8.172 10.5 7.5 9.828 7.5 9 C 7.5 8.172 8.172 7.5 9 7.5 Z"
+						fill="currentColor"
+					></path>
+					<path
+						d="M 13.5 7.5 C 14.328 7.5 15 8.172 15 9 C 15 9.828 14.328 10.5 13.5 10.5 C 12.672 10.5 12 9.828 12 9 C 12 8.172 12.672 7.5 13.5 7.5 Z"
+						fill="currentColor"
+					></path>
+					<path
+						d="M 4.5 7.5 C 5.328 7.5 6 8.172 6 9 C 6 9.828 5.328 10.5 4.5 10.5 C 3.672 10.5 3 9.828 3 9 C 3 8.172 3.672 7.5 4.5 7.5 Z"
+						fill="currentColor"
+					></path>
+				</svg>
+			) : text == "Error" ? (
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="16"
+					height="16"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					className="-mr-0.5"
+				>
+					<path d="M12 9v4" />
+					<path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
+					<path d="M12 16h.01" />
+				</svg>
+			) : null}
 		</Button>
 	);
 }

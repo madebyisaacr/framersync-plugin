@@ -57,7 +57,7 @@ function AppButton({ title, iconId, onClick }) {
 	return (
 		<div
 			onClick={onClick}
-			className="flex-col items-center justify-center gap-3 bg-secondary rounded aspect-square font-semibold cursor-pointer hover:bg-tertiary transition-colors"
+			className="flex-col items-center justify-center gap-3 bg-tertiary rounded aspect-square font-semibold cursor-pointer hover:bg-secondary transition-colors"
 		>
 			<Logo id={iconId} size={40} shadow />
 			{title}

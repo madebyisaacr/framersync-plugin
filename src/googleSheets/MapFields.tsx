@@ -142,7 +142,7 @@ export function MapFieldsPage({
 			getPossibleSlugFields={getPossibleSlugFields}
 			fieldConfigList={fieldConfigList}
 			propertyLabelText="Sheet column"
-			slugFieldTitleText="Slug Field Column"
+			slugFieldTitleText="Column"
 			databaseName={`${spreadsheet.name} - ${sheet.properties.title}`}
 			databaseUrl={`https://docs.google.com/spreadsheets/d/${spreadsheet.id}/edit?gid=${sheet.id}`}
 			databaseLabel="Google Sheet"

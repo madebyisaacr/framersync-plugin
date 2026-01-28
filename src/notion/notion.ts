@@ -62,6 +62,7 @@ const propertyConversionTypes = {
 	last_edited_by: [],
 	people: [],
 	relation: [],
+	place: [],
 };
 
 // The order in which we display slug fields

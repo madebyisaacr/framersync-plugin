@@ -43,6 +43,7 @@ const notionPropertyTypes = {
 	url: "URL",
 	button: "Button",
 	unique_id: "ID",
+	place: "Place",
 	"page-icon": "Image / Emoji",
 	"page-cover": "Image",
 	"page-content": "Page Content",
@@ -315,7 +316,7 @@ export function MapFieldsPage({
 			getInitialSlugFieldId={getInitialSlugFieldId}
 			fieldConfigList={fieldConfig}
 			propertyLabelText="Notion property"
-			slugFieldTitleText="Slug Field Property"
+			slugFieldTitleText="Property"
 			databaseName={richTextToPlainText(database.title)}
 			databaseUrl={database.url}
 			getFieldConversionMessage={getFieldConversionMessage}
@@ -372,6 +373,9 @@ function getFieldConversionMessage(
 			break;
 		case "relation":
 			text = "Relation fields cannot be imported. Use Rollup fields instead.";
+			break;
+		case "place":
+			text = "Place fields cannot be imported.";
 			break;
 	}
 

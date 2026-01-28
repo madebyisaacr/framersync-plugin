@@ -39,7 +39,7 @@ export function SegmentedControl({
 	return (
 		<div
 			className={classNames(
-				"relative flex bg-secondary p-0.5 rounded",
+				"relative flex bg-tertiary p-0.5 rounded",
 				className,
 				vertical ? "flex-col" : "flex-row h-6 min-h-6"
 			)}

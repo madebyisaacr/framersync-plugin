@@ -187,7 +187,7 @@ function DatabaseButton({
 		<div
 			className={classNames(
 				"relative cursor-pointer flex-col font-semibold rounded",
-				selected && "bg-secondary"
+				selected && "bg-tertiary"
 			)}
 		>
 			<div onClick={onClick} className="flex-row gap-2 items-center h-7 px-2">

@@ -34,7 +34,7 @@ const Button = forwardRef(function Button(
 					? "bg-accent text-[#FFF] rounded transition-[filter] hover:!bg-accent active:!bg-accent focus:!bg-accent"
 					: customColor
 						? ""
-						: "bg-secondary text-primary hover:bg-tertiary active:!bg-tertiary transition-colors",
+						: "bg-tertiary text-primary hover:bg-secondary active:!bg-secondary transition-colors",
 				disabled ? "opacity-60" : "cursor-pointer",
 				!disabled && primary && "hover:brightness-110",
 				className,

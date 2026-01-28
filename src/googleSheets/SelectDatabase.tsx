@@ -115,7 +115,7 @@ export function SelectDatabasePage() {
 				{selectedSpreadsheetId ? (
 					<div className="flex-col gap-2">
 						<p>Select a sheet to sync:</p>
-						<div className="flex-col p-1 relative bg-secondary rounded-lg">
+						<div className="flex-col p-1 relative bg-tertiary rounded-lg">
 							{sheets.length === 0 ? (
 								<div className="flex-row items-center justify-center flex-1 gap-2 min-h-6 text-secondary">
 									<div className="framer-spinner" />
