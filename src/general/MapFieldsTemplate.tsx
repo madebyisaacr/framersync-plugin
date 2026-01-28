@@ -2,12 +2,11 @@ import { assert } from "../utils.js";
 import { Fragment, useMemo, useState, useEffect, forwardRef, useRef } from "react";
 import classNames from "classnames";
 import { IconChevron } from "../components/Icons";
-import Button from "@shared/Button";
+import Button from "../components/Button";
 import { cmsFieldIcons } from "../assets/cmsFieldIcons";
-import { Spinner } from "@shared/spinner/Spinner";
 import { usePluginContext, PluginContext } from "./PluginContext";
 import Window from "./Window";
-import { SegmentedControl } from "@shared/components";
+import { SegmentedControl } from "../components/SegmentedControl";
 import { cmsFieldTypeNames } from "./data.js";
 import BackButton from "../components/BackButton";
 import { motion } from "framer-motion";
@@ -61,7 +60,7 @@ export function MapFieldsPageTemplate(props) {
 	) : (
 		<Window page="MapFields">
 			<div className="absolute inset-0 flex-col items-center justify-center gap-3 font-semibold">
-				<Spinner inline />
+				<div className="framer-spinner" />
 				Loading {databaseLabel}...
 			</div>
 		</Window>
@@ -100,19 +99,19 @@ function MapFieldsPage({
 
 	const slugFields = useMemo(() => getPossibleSlugFields(fieldConfigList), [fieldConfigList]);
 	const [slugFieldId, setSlugFieldId] = useState<string | null>(() =>
-		getInitialSlugFieldId(pluginContext, slugFields)
+		getInitialSlugFieldId(pluginContext, slugFields),
 	);
 	const [disabledFieldIds, setDisabledFieldIds] = useState(
-		getDisabledFieldIds(fieldConfigList, pluginContext)
+		getDisabledFieldIds(fieldConfigList, pluginContext),
 	);
 	const [fieldNameOverrides, setFieldNameOverrides] = useState<Record<string, string>>(() =>
-		getFieldNameOverrides(pluginContext)
+		getFieldNameOverrides(pluginContext),
 	);
 	const [fieldTypes, setFieldTypes] = useState(
-		createFieldTypesList(fieldConfigList, pluginContext)
+		createFieldTypesList(fieldConfigList, pluginContext),
 	);
 	const [fieldSettings, setFieldSettings] = useState(
-		getInitialFieldSettings(pluginContext, fieldConfigList, allFieldSettings)
+		getInitialFieldSettings(pluginContext, fieldConfigList, allFieldSettings),
 	);
 
 	const fieldElementRefs = useRef({});
@@ -187,8 +186,8 @@ function MapFieldsPage({
 					fieldConfig.property,
 					fieldNameOverrides[fieldConfig.property.id] || fieldConfig.property.name,
 					fieldTypes[fieldConfig.property.id],
-					fieldSettings[fieldConfig.property.id]
-				)
+					fieldSettings[fieldConfig.property.id],
+				),
 			);
 		}
 
@@ -200,7 +199,7 @@ function MapFieldsPage({
 				databaseName,
 				fieldSettings,
 			},
-			onSubmit
+			onSubmit,
 		);
 	};
 
@@ -261,7 +260,7 @@ function MapFieldsPage({
 	const unsupportedFields = fieldConfigList.filter((fieldConfig) => fieldConfig.unsupported);
 	const pageLevelFields = fieldConfigList.filter((fieldConfig) => fieldConfig.isPageLevelField);
 	const otherFields = fieldConfigList.filter(
-		(fieldConfig) => !fieldConfig.isPageLevelField && !fieldConfig.unsupported
+		(fieldConfig) => !fieldConfig.isPageLevelField && !fieldConfig.unsupported,
 	);
 
 	return (
@@ -270,7 +269,7 @@ function MapFieldsPage({
 			<motion.div
 				className={classNames(
 					"h-full flex-1 overflow-hidden flex-col",
-					isLoading && "pointer-events-none"
+					isLoading && "pointer-events-none",
 				)}
 				animate={{
 					opacity: isLoading ? 0.5 : 1,
@@ -282,7 +281,7 @@ function MapFieldsPage({
 					<div className="flex-col flex-1">
 						<div
 							className={classNames(
-								"flex-col flex-1 p-3 gap-3 transition-opacity relative overflow-y-auto"
+								"flex-col flex-1 p-3 gap-3 transition-opacity relative overflow-y-auto",
 							)}
 						>
 							<div className="flex-col gap-3 mb-2">
@@ -432,7 +431,7 @@ function MapFieldsPage({
 													key={field.property.id}
 													className={classNames(
 														"items-center flex-row gap-2 rounded px-2 h-6 cursor-pointer",
-														slugFieldId === field.property.id && "bg-secondary"
+														slugFieldId === field.property.id && "bg-secondary",
 													)}
 												>
 													<input
@@ -447,7 +446,7 @@ function MapFieldsPage({
 														<ColumnLetter
 															className={classNames(
 																"-mr-0.5",
-																slugFieldId === field.property.id ? "opacity-100" : "opacity-60"
+																slugFieldId === field.property.id ? "opacity-100" : "opacity-60",
 															)}
 														>
 															{field.property?.columnLetter}
@@ -456,7 +455,7 @@ function MapFieldsPage({
 													<span
 														className={classNames(
 															"flex-1",
-															slugFieldId === field.property.id ? "text-primary" : "text-secondary"
+															slugFieldId === field.property.id ? "text-primary" : "text-secondary",
 														)}
 													>
 														{field.property.name}
@@ -531,7 +530,7 @@ function MapFieldsPage({
 			</motion.div>
 			{isLoading && (
 				<div className="absolute inset-0 flex-col items-center justify-center gap-3 font-semibold">
-					<Spinner inline />
+					<div className="framer-spinner" />
 					Importing items...
 				</div>
 			)}
@@ -555,7 +554,7 @@ function UnsupportedFieldBlock({ title, text }) {
 				<div
 					className={classNames(
 						"flex-col gap-1.5 rounded-lg p-3 w-full z-10 text-secondary bg-modal pointer-events-none absolute -top-2 -translate-y-[100%] transition-opacity",
-						hover ? "opacity-100" : "opacity-0"
+						hover ? "opacity-100" : "opacity-0",
 					)}
 					style={{
 						boxShadow: "rgba(0, 0, 0, 0.1) 0px 10px 20px 0px",
@@ -620,7 +619,7 @@ function FieldTypeSelector({
 						onClick={() => onChange(type)}
 						className={classNames(
 							"relative w-full pl-[34px] pr-1 h-6 cursor-pointer flex-col justify-center transition-colors",
-							fieldType === type ? "text-primary" : "text-secondary"
+							fieldType === type ? "text-primary" : "text-secondary",
 						)}
 					>
 						{cmsFieldTypeNames[type]}
@@ -660,7 +659,7 @@ function FieldTypeIcon({ fieldType, disabled = false, className = "" }) {
 			className={classNames(
 				"text-accent absolute top-[4px] left-[4px] pointer-events-none",
 				disabled && "opacity-50",
-				className
+				className,
 			)}
 		>
 			{cmsFieldIcons[fieldType]}
@@ -677,7 +676,7 @@ const StaticInput = forwardRef(
 				className={classNames(
 					"relative w-full h-6 flex items-center justify-between bg-secondary rounded gap-1.5 px-2 min-w-0 text-ellipsis text-nowrap overflow-hidden",
 					disabled && "opacity-50",
-					className
+					className,
 				)}
 			>
 				<span className="shrink-0 flex-row items-center gap-1.5">{children}</span>
@@ -685,7 +684,7 @@ const StaticInput = forwardRef(
 					<span
 						className={classNames(
 							"text-right text-ellipsis text-nowrap overflow-hidden shrink",
-							disabled ? "text-secondary" : "text-tertiary"
+							disabled ? "text-secondary" : "text-tertiary",
 						)}
 						title={leftText}
 					>
@@ -694,12 +693,12 @@ const StaticInput = forwardRef(
 				)}
 			</div>
 		);
-	}
+	},
 );
 
 function createFieldTypesList(
 	fieldConfigList: CollectionFieldConfig[],
-	pluginContext: PluginContext
+	pluginContext: PluginContext,
 ) {
 	const result: Record<string, string> = {};
 
@@ -715,7 +714,7 @@ function createFieldTypesList(
 			result[fieldConfig.property.id] = defaultType;
 		} else {
 			const field = pluginContext.collectionFields.find(
-				(field) => field.id === fieldConfig.property.id
+				(field) => field.id === fieldConfig.property.id,
 			);
 
 			if (field && conversionTypes.includes(field.type)) {
@@ -754,7 +753,7 @@ function EditFieldMenu({
 
 	const applicableSettings = useMemo(
 		() => getApplicableFieldSettings(fieldConfig, fieldType, allFieldSettings),
-		[fieldConfig, fieldType, allFieldSettings]
+		[fieldConfig, fieldType, allFieldSettings],
 	);
 
 	const fieldSettingMessages = [];
@@ -798,7 +797,7 @@ function EditFieldMenu({
 				<div
 					className={classNames(
 						"flex-col gap-2 w-full transition-opacity",
-						disabled && "opacity-50 pointer-events-none"
+						disabled && "opacity-50 pointer-events-none",
 					)}
 				>
 					<PropertyControl title="Name">
@@ -823,7 +822,7 @@ function EditFieldMenu({
 						<div
 							className={classNames(
 								"p-3 bg-secondary rounded text-secondary flex-col gap-1.5 transition-opacity",
-								disabled && "opacity-50"
+								disabled && "opacity-50",
 							)}
 						>
 							<p className="text-primary font-semibold">{fieldConversionMessage.title}</p>
@@ -872,7 +871,7 @@ function EditFieldMenu({
 							<div
 								className={classNames(
 									"p-3 bg-secondary rounded text-secondary flex-col gap-1.5 transition-opacity",
-									disabled && "opacity-50"
+									disabled && "opacity-50",
 								)}
 							>
 								{fieldSettingMessages.find((msg) => msg[FieldSettings.MultipleFields])?.[
@@ -1050,7 +1049,7 @@ function FieldConfigRow({
 				<label
 					className={classNames(
 						"absolute left-0 inset-y-0 w-6 flex items-center justify-center",
-						property && !unsupported && "cursor-pointer"
+						property && !unsupported && "cursor-pointer",
 					)}
 				>
 					<input
@@ -1061,7 +1060,7 @@ function FieldConfigRow({
 						className={classNames(
 							(disabledFieldIds.has(id) || !property || unsupported) &&
 								"!bg-[#b4b4b4] dark:!bg-[#5b5b5b]",
-							"pointer-events-none"
+							"pointer-events-none",
 						)}
 						onChange={() => {
 							assert(property);
@@ -1116,7 +1115,7 @@ function ColumnLetter({ children, className = "" }) {
 		<div
 			className={classNames(
 				"bg-segmented-control rounded-sm px-1 min-w-[18px] h-[18px] text-[10px] font-semibold transition-colors segmented-control-shadow flex-col items-center justify-center",
-				className
+				className,
 			)}
 		>
 			{children}
@@ -1133,7 +1132,7 @@ function getInitialSlugFieldId(pluginContext: PluginContext, fieldConfigList: ob
 
 function getDisabledFieldIds(
 	fieldConfigList: CollectionFieldConfig[],
-	pluginContext: PluginContext
+	pluginContext: PluginContext,
 ): Set<string> {
 	if (pluginContext.type === "update") {
 		return new Set(pluginContext.disabledFieldIds);
@@ -1153,7 +1152,7 @@ function getDisabledFieldIds(
 function getInitialFieldSettings(
 	pluginContext: PluginContext,
 	fieldConfigList: CollectionFieldConfig[],
-	allFieldSettings: object[]
+	allFieldSettings: object[],
 ) {
 	const { fieldSettings } = pluginContext;
 
@@ -1170,7 +1169,7 @@ function getInitialFieldSettings(
 		const applicableSettings = getApplicableFieldSettings(
 			fieldConfig,
 			fieldConfig.conversionTypes[0],
-			allFieldSettings
+			allFieldSettings,
 		);
 
 		for (const setting of applicableSettings) {

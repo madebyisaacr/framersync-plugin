@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { assert } from "../utils";
 import { ReloadIcon } from "../components/Icons";
-import Button from "@shared/Button";
+import Button from "../components/Button";
 import classNames from "classnames";
-import { Spinner } from "@shared/spinner/Spinner";
 import Window from "./Window";
 import { usePluginContext } from "./PluginContext";
 import BackButton from "../components/BackButton";
@@ -97,7 +96,7 @@ export default function SelectDatabasePageTemplate({
 					</div>
 					{isLoading ? (
 						<div className="flex-col items-center justify-center flex-1 gap-4">
-							<Spinner inline />
+							<div className="framer-spinner" />
 							Loading {databasesLabel}...
 						</div>
 					) : databases?.length === 0 ? (
@@ -200,7 +199,7 @@ function DatabaseButton({
 					<div className="absolute top-0 inset-x-2 h-px bg-divider-secondary" />
 					{isLoadingSubdatabases ? (
 						<div className="flex-row items-center justify-center flex-1 gap-2 min-h-6 text-secondary">
-							<Spinner inline />
+							<div className="framer-spinner" />
 							Loading {subdatabasesLabel}...
 						</div>
 					) : (

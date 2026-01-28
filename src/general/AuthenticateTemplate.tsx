@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Button from "@shared/Button";
+import Button from "../components/Button";
 import { framer } from "framer-plugin";
 import { PluginContext, usePluginContext } from "../general/PluginContext";
 import Window from "../general/Window";

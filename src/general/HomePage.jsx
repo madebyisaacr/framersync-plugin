@@ -9,7 +9,7 @@ export default function IntegrationsPage({ onIntegrationSelected }) {
 		<Window page="Integrations" className="flex-col p-3 pt-0 gap-2 overflow-y-auto items-center">
 			<div className="flex-col gap-1 px-2 flex-1 items-center justify-center relative text-center text-balance">
 				<img src="/icon.svg" className="size-10 rounded-lg" />
-				<h1 className="text-lg font-bold mt-3">Sync your content with the Framer CMS</h1>
+				<h1 className="text-lg font-bold mt-3">Sync your content with Framer</h1>
 				<p>
 					FramerSync connects other apps with Framer so you can focus on building your website, not
 					managing data between apps.

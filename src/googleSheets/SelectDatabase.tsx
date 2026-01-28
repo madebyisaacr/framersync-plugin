@@ -1,6 +1,6 @@
 import { usePluginContext } from "../general/PluginContext";
 import { useEffect, useRef, useState } from "react";
-import Button from "@shared/Button";
+import Button from "../components/Button";
 import {
 	openGooglePicker,
 	getFullSheet,
@@ -9,7 +9,6 @@ import {
 } from "./googleSheets";
 import Window from "../general/Window";
 import BackButton from "../components/BackButton";
-import { Spinner } from "@shared/spinner/Spinner";
 import classNames from "classnames";
 import IntegrationGraphic from "../general/IntegrationGraphic";
 
@@ -119,7 +118,7 @@ export function SelectDatabasePage() {
 						<div className="flex-col p-1 relative bg-secondary rounded-lg">
 							{sheets.length === 0 ? (
 								<div className="flex-row items-center justify-center flex-1 gap-2 min-h-6 text-secondary">
-									<Spinner inline />
+									<div className="framer-spinner" />
 									Loading sheets...
 								</div>
 							) : (
